@@ -1,4 +1,5 @@
 import { Product } from "../service/Products"
+import { usDollarFormat } from "../types/Utils";
 
 type Props = {
     product: Product
@@ -6,7 +7,7 @@ type Props = {
     addToCart(product: Product): void;
 }
 
-function CartItem({ product, quantity }: Props) {
+function CartItem({ product, quantity, addToCart }: Props) {
 
     return (
         <li>
@@ -15,14 +16,14 @@ function CartItem({ product, quantity }: Props) {
                 alt={product.title}
             />
             <div>
-                <strong>{product.title}</strong> - ${product.price}
+                <strong>{product.title}</strong> - {usDollarFormat.format(product.price)}
             </div>
 
             <footer>
                 <small>
                     Qty: {quantity}
                 </small>
-                <button>+</button>
+                <button onClick={addToCart}>+</button>
             </footer>
         </li>
     )

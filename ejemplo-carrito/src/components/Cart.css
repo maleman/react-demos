@@ -6,6 +6,15 @@
     right: 0px;
     top: 0px;
     width: 200px;
+    overflow-y: scroll;
+}
+
+.cart> ::-webkit-scrollbar {
+    width: 5px;
+}
+
+.cart> ::-webkit-scrollbar-track {
+    background: red;
 }
 
 .cart img {
@@ -53,4 +62,10 @@
 .cart-button~input:checked~.cart {
     height: 100%;
     display: block;
+}
+
+.cartTotal {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }

@@ -21,7 +21,7 @@ const CartContextProvider = ({ children }) => {
 
     const addToCart = (_product: Product, _qty: number) => {
 
-        const actualCart = (cart.length) ? cart : []
+        const actualCart = (cart.length) ? cart.slice() : []
         if (actualCart.some(item => item.product.id === _product.id)) {
             const index = actualCart.findIndex(item => item.product.id === _product.id)
             actualCart[index].qty = actualCart[index].qty + 1
@@ -32,7 +32,7 @@ const CartContextProvider = ({ children }) => {
             }
             actualCart.push(newICart)
         }
-        setCart(actualCart.slice())
+        setCart(actualCart)
     }
 
     const removeFromCart = (product: Product) => {

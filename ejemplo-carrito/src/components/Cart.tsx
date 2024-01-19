@@ -4,24 +4,24 @@ import { CartIcon, ClearCartIcon } from "./Icon"
 import React from "react"
 import { CartContext } from "../ctx/CartContext"
 import './Cart.css'
+import { usDollarFormat } from "../types/Utils"
 
 export function Cart() {
     const cartCheckboxId = useId()
     const [totalCart, setTotalCart] = React.useState(0)
     const { cart, addToCart, clearCart } = React.useContext(CartContext)
 
-    const usDollar = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', });
-
     React.useEffect(() => {
-        const newTotal = (cart.length)
-            ? cart.reduce(
+
+        if (cart.length) {
+            const newTotal = cart.reduce(
                 (acc, _cart) => {
                     return ((_cart.product.price) * (_cart.qty)) + acc
                 }, 0)
-            : 0
-
-        setTotalCart(newTotal)
-
+            setTotalCart(newTotal)
+        } else {
+            setTotalCart(0)
+        }
     }, [cart])
 
     return (
@@ -32,7 +32,9 @@ export function Cart() {
             <input id={cartCheckboxId} type='checkbox' hidden />
 
             <aside className='cart'>
-                <h4>Total: {usDollar.format(totalCart)}</h4>
+                <div className="cartTotal">
+                    <h4>Total: {usDollarFormat.format(totalCart)}</h4>
+                </div>
                 <ul>
                     {
                         cart.length ? (
