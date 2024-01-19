@@ -1,0 +1,15 @@
+.search_panel_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.search_panel_row>div {
+  gap: 2rem;
+}
+
+.searchInputStyle {
+  width: 80%;
+}
